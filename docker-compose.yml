@@ -1,1 +1,15 @@
-test
+version: '3.1'
+
+services:
+  web:
+    build: .
+    volumes: 
+      - ./scr:/var/www/html
+    ports:
+      - "80:80"
+    links:
+      - db
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example
