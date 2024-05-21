@@ -26,3 +26,56 @@ Deze is vrij lang dus staat in de repository bij /Project-Cloud-LarsL/docker-com
 
 vervolgens kan je naar je VM gaan en daar:
 git installeren, docker installeren, docker-compose installeren, de commando's zijn als volgt in volgorde: 
+----SSH naar je VM (dit doe je met je public key via azure dan is het gewoon ssh "azurelink")
+ssh your-username@your-vm-ip-address
+--of--
+ssh "link-van-azure"
+
+----Update en installeer Git
+sudo apt update
+sudo apt install git -y
+
+----Installeer Docker
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+exit
+
+----Log opnieuw in om wijzigingen door te voeren
+ssh your-username@your-vm-ip-address
+
+----Installeer Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+----dan clone je je project met: 
+git clone https://github.com/jouwgebruikersnam/repo-naam.git
+cd repo-naam
+
+daar kan je dan vervolgens je container bouwen met:
+---- docker-compose commando 
+(sudo) docker-compose up -d
+
+je kan kijken op gelukt is met 
+(sudo) docker ps
+
+-- dit geeft bij mij terug in ruwe mate: (ook de container ip adressen naam en tijd van deployment staan erbij
+repo-naam_php : running
+repo-naam_db: running
+
+om dan naar je site te gaan surf je naar
+localhost:8080
+----of het ip van je vm met 8080 erachter dus
+your.ip.adress:8080
+
+
+om in te loggen in de databank kan je een 2de terminal openen, connecten en vervolgens het exec commando uitvoeren:
+docker exec -it <db_container_name> mysql -u root -p
+Enter password: rootWord
+
+--- dan kan je nakijken of de logs worden gelegd door de data te bekijken.
+USE visitors;
+SELECT * FROM visit_logs;
+
+de githook code leg ik hieronder uit: 
