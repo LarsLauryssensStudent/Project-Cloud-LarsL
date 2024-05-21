@@ -1,11 +1,15 @@
+# We gebruiken php:apache omdat we een webserver nodig hebben
 FROM php:apache
-RUN docker-php-ext-install mysqli
-COPY . /var/www/html/
 
-#de imagemoest php:apache zijn
-FROM php:apache
-#de php code in de image plaatsen zodat deze aan de verdere data zoals html en php code kan
+# Mijn php/code staat in een mapje genoemd src dus ik zet deze vervolgens over naar de container directory
 COPY ./src /var/www/html
-# de mysqli extensie downloaden en installeren in de image en de config file in de image zetten
-RUN docker-php-ext-install mysqli && mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-#dit zou alles moeten zijn
+
+# En dan moeten we my-sqli installeren
+RUN docker-php-ext-install mysqli
+
+#werk directory verzetten (optioneel anders zit je in de root van de container, dit kan ook)
+WORKDIR /var/www/html
+
+# COMMENTAAR VOOR DOCENT
+# ik weet niet zeker of dit moet.
+# mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
