@@ -1,0 +1,28 @@
+Eerst maken we de vm zoals gezien in stap 1.
+Vanaf daar herbegin ik,
+
+ik maak een nieuwe php file aan zodat ik geen config meer nodig heb.
+deze staat in map src/login.php
+
+
+dan heb ik een dockerfile gemaakt.
+--------------------------------------------------------------
+# We gebruiken php:apache omdat we een webserver nodig hebben
+FROM php:apache
+
+# Mijn php/code staat in een mapje genoemd src dus ik zet deze vervolgens over naar de container directory
+COPY ./src /var/www/html
+
+# En dan moeten we my-sqli installeren
+RUN docker-php-ext-install mysqli
+
+# COMMENTAAR VOOR DOCENT
+# ik weet niet zeker of dit moet.
+# mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+-------------------------------------------------------------
+
+dan een docker-compose.yml file.
+Deze is vrij lang dus staat in de repository bij /Project-Cloud-LarsL/docker-compose.yml
+
+vervolgens kan je naar je VM gaan en daar:
+git installeren, docker installeren, docker-compose installeren, de commando's zijn als volgt in volgorde: 
