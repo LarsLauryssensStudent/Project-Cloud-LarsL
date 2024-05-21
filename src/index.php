@@ -1,3 +1,8 @@
+<?php
+// PHP code laten runnen op de pagina
+include 'log_visit.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
