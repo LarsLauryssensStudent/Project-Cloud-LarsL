@@ -1,26 +1,26 @@
 #IK ZET ALLES EVEN IN COMMENTAAR ZODAT IK NIET ELKE KEER EEN MELDING KRIJG TERWIJL IK HIERAAN WERK
 
-#name: CI
+name: CI
 #------event: wanneer we pushen naar de main branch
-#on:
-#  push:
-#    branches:
-#      - main
+on:
+  push:
+    branches:
+      - main
 #-------dan moet em terug opnieuw een image bouwen dus job --> build
-#jobs:
-#  build:
+jobs:
+  build:
 #------- de image meegeven
-#    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 #--------code nakijken
-#    steps:
-#    - name: Checkout code
-#      uses: actions/checkout@v2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 #-------de image herbouwen
-#    - name: Build Docker image
-#      run: docker build -t dockerhub-account-naam/uw-image-naam .
+    - name: Build Docker image
+      run: docker build -t dockerhub-account-naam/uw-image-naam .
 #-------conncectie leggen met hub
-#    - name: Login to Docker Hub
-#      run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+    - name: Login to Docker Hub
+      run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 #-------de image pushen zodat deze kan gebruikt worden
-#    - name: Push Docker image
-#      run: docker push dockerhub-account-naam/uw-image-naam
+    - name: Push Docker image
+      run: docker push dockerhub-account-naam/uw-image-naam
