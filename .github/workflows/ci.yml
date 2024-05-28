@@ -17,10 +17,10 @@ jobs:
       uses: actions/checkout@v2
 #-------de image herbouwen
     - name: Build Docker image
-      run: docker build -t dockerhub-account-naam/uw-image-naam .
+      run: docker build -t larslauryssens/project-for-cloud .
 #-------conncectie leggen met hub
     - name: Login to Docker Hub
       run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 #-------de image pushen zodat deze kan gebruikt worden
     - name: Push Docker image
-      run: docker push larslauryssens/ProjectForCloud
+      run: docker push larslauryssens/project-for-cloud
