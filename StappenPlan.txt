@@ -39,6 +39,7 @@ sudo apt install git -y
 sudo apt install docker.io -y
 sudo systemctl start docker
 sudo systemctl enable docker
+sudo mysql_secure_installation
 sudo usermod -aG docker $USER
 exit
 
