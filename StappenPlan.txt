@@ -72,7 +72,7 @@ your.ip.adress:8080
 
 
 om in te loggen in de databank kan je een 2de terminal openen, connecten en vervolgens het exec commando uitvoeren:
-docker exec -it <db_container_name> mysql -u root -p
+docker exec -it mariadb-db mariadb -u root -p
 Enter password: rootWord
 
 --- dan kan je nakijken of de logs worden gelegd door de data te bekijken.
